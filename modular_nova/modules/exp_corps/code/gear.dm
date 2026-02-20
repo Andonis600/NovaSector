@@ -124,6 +124,8 @@
 	wielding will provide best results at the cost of reduced mobility."
 	icon_state = "riot"
 	icon = 'modular_nova/modules/exp_corps/icons/riot.dmi'
+	worn_icon = 'modular_nova/master_files/icons/mob/clothing/back.dmi'
+	worn_icon_state = "erisriot"
 	lefthand_file = 'modular_nova/modules/exp_corps/icons/riot_left.dmi'
 	righthand_file = 'modular_nova/modules/exp_corps/icons/riot_right.dmi'
 	force = 10
@@ -137,6 +139,7 @@
 	transparent = FALSE
 	max_integrity = 200
 	shield_break_leftover = /obj/item/pointman_broken
+	custom_materials = list(/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 3, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 3, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5)
 
 /obj/item/shield/riot/pointman/Initialize(mapload)
 	. = ..()
@@ -202,7 +205,9 @@
 
 /obj/item/storage/pouch/ammo/marksman
 	name = "marksman's knife pouch"
-	unique_reskin = NONE
+
+/obj/item/storage/pouch/ammo/marksman/setup_reskins()
+	return
 
 /obj/item/storage/pouch/ammo/marksman/Initialize(mapload)
 	. = ..()

@@ -161,6 +161,7 @@
 	name = "bridge officer's jumpskirt"
 	desc = "It's a blue jumpskirt with silver markings denoting the rank of \"Bridge Officer\"."
 	icon_state = "bo_skirt"
+	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/rank/bridge_officer/turtle
 	name = "bridge officer's turtleneck"
@@ -171,6 +172,7 @@
 	name = "bridge officer's skirtleneck"
 	desc = "It's a blue skirtleneck with silver markings denoting the rank of \"Bridge Officer\"."
 	icon_state = "bo_skirtleneck"
+	gets_cropped_on_taurs = FALSE
 
 /*
 *	UNASSIGNED (Any head of staff)
@@ -180,7 +182,7 @@
 	name = "command utility uniform"
 	desc = "A utility uniform worn by Station Command."
 	icon_state = "util_com"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION | CLOTHING_BIG_LEGS_MASK
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	alt_covers_chest = TRUE
 
@@ -192,25 +194,25 @@
 	desc = "A grey naval suit with a rank badge denoting an Officer. Doesn't protect against blaster fire."
 	name = "grey officer's naval jumpsuit"
 	icon_state = "impcom"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK | CLOTHING_BIG_LEGS_MASK
 
 /obj/item/clothing/under/rank/captain/nova/imperial/generic/pants
 	desc = "A grey naval suit over black pants, with a rank badge denoting an Officer. Doesn't protect against blaster fire."
 	name = "officer's naval jumpsuit"
 	icon_state = "impcom_pants"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK | CLOTHING_BIG_LEGS_MASK
 
 /obj/item/clothing/under/rank/captain/nova/imperial/generic/grey
 	desc = "A dark grey naval suit with a rank badge denoting an Officer. Doesn't protect against blaster fire."
 	name = "dark grey officer's naval jumpsuit"
 	icon_state = "impcom_dark"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK | CLOTHING_BIG_LEGS_MASK
 
 /obj/item/clothing/under/rank/captain/nova/imperial/generic/red
 	desc = "A red naval suit with a rank badge denoting an Officer. Doesn't protect against blaster fire."
 	name = "red officer's naval jumpsuit"
 	icon_state = "impcom_red"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK | CLOTHING_BIG_LEGS_MASK
 
 /*
 *	MISC
@@ -230,3 +232,4 @@
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	gets_cropped_on_taurs = FALSE

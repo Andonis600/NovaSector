@@ -275,13 +275,11 @@
 	if(updated_controller.specific_transport_id != configured_transport_id)
 		return
 
-	switch(new_status)
-		if(TRUE)
-			if(operating_status == TRANSPORT_REMOTE_FAULT)
-				operating_status = TRANSPORT_SYSTEM_NORMAL
-		if(FALSE)
-			if(operating_status == TRANSPORT_SYSTEM_NORMAL)
-				operating_status = TRANSPORT_REMOTE_FAULT
+	if(new_status)
+		if(operating_status == TRANSPORT_REMOTE_FAULT)
+			operating_status = TRANSPORT_SYSTEM_NORMAL
+	else if(operating_status == TRANSPORT_SYSTEM_NORMAL)
+		operating_status = TRANSPORT_REMOTE_FAULT
 
 /**
  * Update processing state.
@@ -658,9 +656,14 @@
 	var/list/obj/machinery/transport/guideway_sensor/sensor_candidates = list()
 
 	for(var/obj/machinery/transport/guideway_sensor/sensor in SStransport.sensors)
-		if(sensor.z == src.z)
-			if((sensor.x == src.x && sensor.dir & NORTH|SOUTH) || (sensor.y == src.y && sensor.dir & EAST|WEST))
-				sensor_candidates += sensor
+		if(sensor.z != src.z)
+			continue
+		if(sensor.x != src.x && !(sensor.dir & (NORTH|SOUTH)))
+			continue
+		if(sensor.y != src.y && !(sensor.dir & (EAST|WEST)))
+			continue
+
+		sensor_candidates += sensor
 
 	var/obj/machinery/transport/guideway_sensor/selected_sensor = get_closest_atom(/obj/machinery/transport/guideway_sensor, sensor_candidates, src)
 	var/sensor_distance = get_dist(src, selected_sensor)
