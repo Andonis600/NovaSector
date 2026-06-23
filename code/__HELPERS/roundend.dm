@@ -441,8 +441,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 
     // Loop through every connected client and play it
     for(var/client/C in GLOB.clients)
-        if(C.prefs && C.prefs.read_preference(/datum/preference/toggle/sound_lobby)) // Respects player's "mute music" setting
-            C << end_theme
+        C << end_theme
 
 /datum/controller/subsystem/ticker/proc/personal_report(client/C, popcount)
 	var/list/parts = list()
