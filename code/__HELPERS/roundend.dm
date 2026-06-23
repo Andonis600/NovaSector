@@ -231,11 +231,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 
 	var/popcount = gather_roundend_feedback()
 	display_report(popcount)
-
-	proc/end_the_round_audio()
-    	// Directly output the sound file to the world
-    	world << sound('sound/music/lobby_music/theme02.ogg', repeat = 0, wait = 0, volume = 65, channel = 1)
-
+	play_roundend_music()
 
 	CHECK_TICK
 
@@ -432,6 +428,21 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 	roundend_report.add_stylesheet("roundend", 'html/browser/roundend.css')
 	roundend_report.add_stylesheet("font-awesome", 'html/font-awesome/css/all.min.css')
 	roundend_report.open(FALSE)
+
+/datum/controller/subsystem/ticker/proc/play_roundend_music()
+    // Define the sound file path from your sound folder
+    var/sound/end_theme = sound('sound/music/lobby_music/theme02.ogg')
+
+    // Configure the sound properties
+    end_theme.volume = 70       // Set volume (0-100)
+    end_theme.repeat = 0       // Do not loop the track
+    end_theme.wait = 0         // Play immediately
+    end_theme.channel = CHANNEL_MUSIC // Uses the player's music volume slider
+
+    // Loop through every connected client and play it
+    for(var/client/C in GLOB.clients)
+        if(C.prefs && C.prefs.toggles & SOUND_MUSIC) // Respects player's "mute music" setting
+            C << end_theme
 
 /datum/controller/subsystem/ticker/proc/personal_report(client/C, popcount)
 	var/list/parts = list()
