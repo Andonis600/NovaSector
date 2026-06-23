@@ -232,6 +232,11 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 	var/popcount = gather_roundend_feedback()
 	display_report(popcount)
 
+	proc/end_the_round_audio()
+    	// Directly output the sound file to the world
+    	world << sound('sound/music/lobby_music/theme02.ogg', repeat = 0, wait = 0, volume = 65, channel = 1)
+
+
 	CHECK_TICK
 
 	/* ///NOVA EDIT START
