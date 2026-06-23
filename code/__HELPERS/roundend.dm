@@ -437,11 +437,11 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
     end_theme.volume = 70       // Set volume (0-100)
     end_theme.repeat = 0       // Do not loop the track
     end_theme.wait = 0         // Play immediately
-    end_theme.channel = CHANNEL_MUSIC // Uses the player's music volume slider
+    end_theme.channel = CHANNEL_LOBBYMUSIC // Uses the player's music volume slider
 
     // Loop through every connected client and play it
     for(var/client/C in GLOB.clients)
-        if(C.prefs && C.prefs.toggles & SOUND_MUSIC) // Respects player's "mute music" setting
+        if(C.prefs && C.prefs.read_preference(/datum/preference/toggle/sound_lobby)) // Respects player's "mute music" setting
             C << end_theme
 
 /datum/controller/subsystem/ticker/proc/personal_report(client/C, popcount)
