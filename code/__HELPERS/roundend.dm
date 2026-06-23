@@ -212,6 +212,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		log_admin("[player_client] gained [round(human_mob.hardcore_survival_score)] hardcore random points.")
 
 /datum/controller/subsystem/ticker/proc/declare_completion(was_forced = END_ROUND_AS_NORMAL)
+	play_roundend_music()
 	set waitfor = FALSE
 
 	for(var/datum/callback/roundend_callbacks as anything in round_end_events)
@@ -231,7 +232,6 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 
 	var/popcount = gather_roundend_feedback()
 	display_report(popcount)
-	play_roundend_music()
 
 	CHECK_TICK
 
@@ -430,18 +430,9 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 	roundend_report.open(FALSE)
 
 /datum/controller/subsystem/ticker/proc/play_roundend_music()
-    // Define the sound file path from your sound folder
-    var/sound/end_theme = sound('sound/music/lobby_music/theme02.ogg')
-
-    // Configure the sound properties
-    end_theme.volume = 70       // Set volume (0-100)
-    end_theme.repeat = 0       // Do not loop the track
-    end_theme.wait = 0         // Play immediately
-    end_theme.channel = CHANNEL_LOBBYMUSIC // Uses the player's music volume slider
-
     // Loop through every connected client and play it
     for(var/client/C in GLOB.clients)
-        C << end_theme
+        C << sound('sound/music/lobby_music/theme02.ogg', repeat = 0, wait = 0, volume = 70, channel = CHANNEL_LOBBYMUSIC)
 
 /datum/controller/subsystem/ticker/proc/personal_report(client/C, popcount)
 	var/list/parts = list()
