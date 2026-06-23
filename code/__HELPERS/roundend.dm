@@ -432,7 +432,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 /datum/controller/subsystem/ticker/proc/play_roundend_music()
     // Loop through every connected client and play it
     for(var/client/C in GLOB.clients)
-        C << sound('sound/music/lobby_music/theme02.ogg', repeat = 0, wait = 0, volume = 70, channel = CHANNEL_LOBBYMUSIC)
+        C << sound('sound/music/lobby_music/theme02.mp3', repeat = 0, wait = 0, volume = 70, channel = CHANNEL_LOBBYMUSIC)
 
 /datum/controller/subsystem/ticker/proc/personal_report(client/C, popcount)
 	var/list/parts = list()
