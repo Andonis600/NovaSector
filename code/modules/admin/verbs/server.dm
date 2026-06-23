@@ -85,6 +85,7 @@ ADMIN_VERB(end_round, R_SERVER, "End Round", "Forcibly ends the round and allows
 	var/confirm = tgui_alert(user, "End the round and  restart the game world?", "End Round", list("Yes", "Cancel"))
 	if(confirm != "Yes")
 		return
+	SSticker.play_roundend_music()
 	SSticker.force_ending = FORCE_END_ROUND
 	BLACKBOX_LOG_ADMIN_VERB("End Round")
 

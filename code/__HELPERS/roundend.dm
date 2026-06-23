@@ -212,8 +212,8 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		log_admin("[player_client] gained [round(human_mob.hardcore_survival_score)] hardcore random points.")
 
 /datum/controller/subsystem/ticker/proc/declare_completion(was_forced = END_ROUND_AS_NORMAL)
-	play_roundend_music()
 	set waitfor = FALSE
+	play_roundend_music()
 
 	for(var/datum/callback/roundend_callbacks as anything in round_end_events)
 		roundend_callbacks.InvokeAsync()
